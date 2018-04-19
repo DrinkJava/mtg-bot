@@ -2,6 +2,7 @@ from mtgsdk import Card
 
 def fetch_by_name(name):
     cards = Card.where(name=name).all()
+    cards = [c for c in cards if c.image_url != None]
     if not cards:
         return {"Status": -1,
                 "Message": "Sorry, no cards were found. Perhaps there is a typo?",
